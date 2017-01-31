@@ -5,18 +5,18 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-public class FrameGame extends JFrame {
+public class JFrameGame extends JFrame {
 
 	/*
 	 * 构造函数
 	 */
-	public FrameGame() {
+	public JFrameGame() {
 		// 设置标题
 		this.setTitle("Java俄罗斯方块");
 		// 设置默认关闭操作
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// 设置大小
-		this.setSize(1162, 654);
+		// TODO 设置大小
+		this.setSize(1168, 680);
 		// 不允许用户改变窗口大小
 		this.setResizable(false);
 		// 设置居中
@@ -26,7 +26,7 @@ public class FrameGame extends JFrame {
 		int y = (screen.height - this.getHeight()) / 2 - 16;
 		this.setLocation(x, y);
 		//设置默认Panel
-		this.setContentPane(new PanelGame());
+		this.setContentPane(new JPanelGame());
 	}
 
 }

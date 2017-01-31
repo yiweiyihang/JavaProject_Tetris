@@ -9,7 +9,10 @@ import javax.swing.ImageIcon;
  * 绘制窗口
  * @author yiweiyihangFT
  */
-public class Lay {
+abstract public class Layer {
+	
+	//文字边距
+	protected static final int PADDING = 16;
 	
 	private static final int  SIZE = 7;
 	//图片来源
@@ -18,27 +21,29 @@ public class Lay {
 	private static int WINDOW_W = WINDOW_IMAGE.getWidth(null);
 	private static int WINDOW_H = WINDOW_IMAGE.getHeight(null);
 	//图片坐标
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	
 	//windows尺寸
-	private int w;
-	private int h;
+	protected int w;
+	protected int h;
 	
 	/*
 	 * 构造函数
 	 */
-	public Lay(int x,int y,int w,int h){
+	public Layer(int x,int y,int w,int h){
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
 	}
 	
-	/*
+	/**
 	 * 绘制窗口方法
+	 * @author yiweiyhangFT
+	 * @param g  画笔
 	 */
-	public void createWindow(Graphics g){
+	protected  void createWindow(Graphics g){
 		
 		//g.drawImage(WINDOW_IMAGE, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer)
 		// 左上
@@ -62,5 +67,12 @@ public class Lay {
 				//右下
 				g.drawImage(WINDOW_IMAGE, (x+w-SIZE), (y+h-SIZE), (x+w), (y+h), (WINDOW_W-SIZE), (WINDOW_H-SIZE), WINDOW_W, WINDOW_H, null);
 	}
+
+	/**
+	 * 刷新具体内容
+	 * @author yiweiyihangFT
+	 * @param g  画笔
+	 */
+	abstract public void paint(Graphics g);
 
 }
