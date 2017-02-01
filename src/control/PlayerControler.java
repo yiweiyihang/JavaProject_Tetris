@@ -1,14 +1,17 @@
 package control;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class PlayerControler implements KeyListener{
+public class PlayerControler extends KeyAdapter{
 
 	/**
 	 * 游戏控制器
 	 */
 	private GameControler gameControler;
+	
+	
 	/**
 	 * 构造函数
 	 * @param gameControler
@@ -18,24 +21,20 @@ public class PlayerControler implements KeyListener{
 		this.gameControler = gameControler;
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
+	/**
+	 * 键盘按下事件
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		System.out.print(e.getKeyCode()+",");
+		this.gameControler.test();
+		System.out.println(e.getKeyCode());
 		
 	}
 
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 
 }

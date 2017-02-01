@@ -16,8 +16,8 @@ public class LayerBackGround extends Layer {
 	@Override
 	public void paint(Graphics g) {
 		// TODO Auto-generated method stub
-
-		g.drawImage(IMG_BG_TEMP, 0, 0,1162,654, null);
+//		g.drawImage(IMG_BG_TEMP, 0, 0,1162,654, null);
+		g.drawImage(IMG_BG_TEMP, x, y,w,h, null);
 	}
 
 }

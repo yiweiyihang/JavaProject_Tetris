@@ -12,13 +12,20 @@ import config.GameConfig;
 import config.LayerConfig;
 import control.GameControler;
 import control.PlayerControler;
+import dto.GameDto;
+import service.GameService;
 
 public class JPanelGame extends JPanel {
 
 	private List<Layer> layers = null;
+	/**
+	 * 游戏数据源
+	 */
+	private GameDto dto = null;
 
-	public JPanelGame() {
-
+	public JPanelGame(GameDto dto) {
+		//获得游戏数据源
+		this.dto = dto;
 		//初始化组件
 		initComponent();
 		//初始化层
@@ -26,6 +33,13 @@ public class JPanelGame extends JPanel {
 
 	}
 
+	/**
+	 * 安装玩家控制器
+	 * @param playerCtl  玩家控制器
+	 */
+	public void setPlayerControl(PlayerControler playerCtl){
+		this.addKeyListener(playerCtl); 
+	}
 	@Override
 	public void paintComponent(Graphics g) {
 		//调用基类方法
@@ -45,8 +59,7 @@ public class JPanelGame extends JPanel {
 	 * 初始化组件
 	 */
 	private void initComponent(){
-		GameControler ctrl = new GameControler(this);
-		this.addKeyListener(new PlayerControler(ctrl));
+		 
 	}
 	
 	
@@ -71,6 +84,8 @@ public class JPanelGame extends JPanel {
 				Constructor ctr = c.getConstructor(int.class, int.class, int.class, int.class);
 				// 利用构造函数创建实例
 				Layer l = (Layer) ctr.newInstance(layerCfg.getX(), layerCfg.getY(), layerCfg.getW(), layerCfg.getH());
+				//设置游戏数据对象
+				l.setDto(dto);
 				layers.add(l);
 
 			}

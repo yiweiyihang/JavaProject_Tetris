@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 
 import config.ConfigFactory;
 import config.GameConfig;
+import dto.GameDto;
 
 /*
  * 绘制窗口
@@ -15,23 +16,38 @@ import config.GameConfig;
 abstract public class Layer {
 	
 	
-	//文字边距
+	/**
+	 * 文字边距
+	 */
 	protected static final int PADDING;
-	
+	/**
+	 * 边框尺寸
+	 */
 	private static final int  SIZE;;
-	//图片来源
+	/**
+	 * 窗口图片来源
+	 */
 	private static Image WINDOW_IMAGE = new ImageIcon("Graphics/windows/Window.png").getImage();
-	//图片尺寸
+	/**
+	 * 图片尺寸
+	 */
 	private static int WINDOW_W = WINDOW_IMAGE.getWidth(null);
 	private static int WINDOW_H = WINDOW_IMAGE.getHeight(null);
-	//图片坐标
+	/**
+	 * 窗口坐标
+	 */
 	protected int x;
 	protected int y;
 	
-	//windows尺寸
+	/**
+	 * 窗口尺寸
+	 */
 	protected int w;
 	protected int h;
-	
+	/**
+	 * 游戏数据源
+	 */
+	protected GameDto dto = null;
 	static{
 		//获取游戏配置
 		GameConfig cfg = ConfigFactory.getGameConfig();
@@ -49,6 +65,14 @@ abstract public class Layer {
 		this.h = h;
 	}
 	
+	/**
+	 * 设置游戏数据
+	 * @param dto
+	 */
+	public void setDto(GameDto dto) {
+		this.dto = dto;
+	}
+
 	/**
 	 * 绘制窗口方法
 	 * @author yiweiyhangFT

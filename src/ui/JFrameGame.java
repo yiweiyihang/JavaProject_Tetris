@@ -13,7 +13,7 @@ public class JFrameGame extends JFrame {
 	/*
 	 * 构造函数
 	 */
-	public JFrameGame() {
+	public JFrameGame(JPanelGame panelGame) {
 		//获取游戏配置
 		GameConfig cfg = ConfigFactory.getGameConfig();
 		// 设置标题
@@ -31,7 +31,9 @@ public class JFrameGame extends JFrame {
 		int y = (screen.height - this.getHeight() >>1 ) - cfg.getWindowUp();
 		this.setLocation(x, y);
 		//设置默认Panel
-		this.setContentPane(new JPanelGame());
+		this.setContentPane(panelGame);
+		//设置窗口为默认显示
+		this.setVisible(true);
 	}
 
 }

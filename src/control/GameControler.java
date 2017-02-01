@@ -21,11 +21,21 @@ public class GameControler {
 	private GameService gameService;
 	/**
 	 * 构造函数
-	 * @param panelGame  游戏Panel
+	 * @param panelGame
+	 * @param gameService
 	 */
-	public GameControler(JPanelGame panelGame) {
+	public GameControler(JPanelGame panelGame,GameService gameService) {
 		// TODO Auto-generated constructor stub
 		this.panelGame = panelGame;
+		this.gameService = gameService;
+	}
+	
+	
+	
+	public void test() {
+		// TODO Auto-generated method stub
+		gameService.gameTest();
+		this.panelGame.repaint();
 	}
 	 
 
