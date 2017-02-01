@@ -10,6 +10,10 @@ import org.dom4j.io.SAXReader;
 
 public class GameConfig {
 	/**
+	 * 标题
+	 */
+	private String title;
+	/**
 	 * 窗口宽度
 	 */
 	private int width;
@@ -25,6 +29,10 @@ public class GameConfig {
 	 * 文字间距
 	 */
 	private int padding;
+	/**
+	 * 窗口拔高
+	 */
+	private int windowUp;
 	/**
 	 * 图层属性
 	 */
@@ -60,10 +68,18 @@ public class GameConfig {
 	 * @param frame  配置文件中的窗口配置参数
 	 */
 	private void setFrameConfig(Element frame){
+		//获取标题
+		this.title = frame.attributeValue("title");
+		//获取窗口宽度
 		this.width = Integer.parseInt(frame.attributeValue("width"));
+		//获取窗口高度
 		this.height = Integer.parseInt(frame.attributeValue("height"));
+		//获取文字边距
 		this.padding = Integer.parseInt(frame.attributeValue("padding"));
+		//获取边框尺寸
 		this.windowSize = Integer.parseInt(frame.attributeValue("windowSize"));
+		//获取窗口拔高
+		this.windowUp = Integer.parseInt(frame.attributeValue("windowUp"));
 		String str = frame.attributeValue("width");
 		layersConfig = new ArrayList<LayerConfig>();
 		List<Element> layers = frame.elements("layer");
@@ -112,6 +128,12 @@ public class GameConfig {
 	}
 	public int getWindowSize() {
 		return windowSize;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public int getWindowUp() {
+		return windowUp;
 	}
 	public int getPadding() {
 		return padding;

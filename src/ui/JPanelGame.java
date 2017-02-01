@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import config.ConfigFactory;
 import config.GameConfig;
 import config.LayerConfig;
+import control.GameControler;
+import control.PlayerControler;
 
 public class JPanelGame extends JPanel {
 
@@ -17,6 +19,41 @@ public class JPanelGame extends JPanel {
 
 	public JPanelGame() {
 
+		//初始化组件
+		initComponent();
+		//初始化层
+		initLayer();
+
+	}
+
+	@Override
+	public void paintComponent(Graphics g) {
+		//调用基类方法
+		super.paintComponent(g);
+		// 循环刷新游戏画面
+		for (Layer lay : layers) {
+			// 刷新层窗口
+			lay.paint(g);
+		}
+		
+		//返回焦点
+		this.requestFocus();
+		//或者写为 for(int i = 0;i < layers.size();layers.get(i++).paint(g)); 适用于循环体只有一句的情况
+	}
+	
+	/**
+	 * 初始化组件
+	 */
+	private void initComponent(){
+		GameControler ctrl = new GameControler(this);
+		this.addKeyListener(new PlayerControler(ctrl));
+	}
+	
+	
+	/**
+	 * 初始化层
+	 */
+	private void initLayer(){
 		try {
 			// 获得游戏配置
 			GameConfig cfg = ConfigFactory.getGameConfig();
@@ -54,15 +91,5 @@ public class JPanelGame extends JPanel {
 		// new LayerPoint(788,368,334,200)
 		//
 		// };
-
-	}
-
-	@Override
-	public void paintComponent(Graphics g) {
-		// 循环刷新游戏画面
-		for (Layer lay : layers) {
-			// 刷新层窗口
-			lay.paint(g);
-		}
 	}
 }

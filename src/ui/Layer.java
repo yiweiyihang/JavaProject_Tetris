@@ -5,16 +5,20 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import config.ConfigFactory;
+import config.GameConfig;
+
 /*
  * 绘制窗口
  * @author yiweiyihangFT
  */
 abstract public class Layer {
 	
-	//文字边距
-	protected static final int PADDING = 16;
 	
-	private static final int  SIZE = 7;
+	//文字边距
+	protected static final int PADDING;
+	
+	private static final int  SIZE;;
 	//图片来源
 	private static Image WINDOW_IMAGE = new ImageIcon("Graphics/windows/Window.png").getImage();
 	//图片尺寸
@@ -27,6 +31,13 @@ abstract public class Layer {
 	//windows尺寸
 	protected int w;
 	protected int h;
+	
+	static{
+		//获取游戏配置
+		GameConfig cfg = ConfigFactory.getGameConfig();
+		PADDING = cfg.getPadding();
+		SIZE = cfg.getWindowSize();
+	}
 	
 	/*
 	 * 构造函数
