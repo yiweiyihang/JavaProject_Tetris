@@ -34,7 +34,50 @@ public class GameControler {
 	
 	public void test() {
 		// TODO Auto-generated method stub
-		gameService.gameTest();
+		
+	}
+
+
+
+	/**
+	 * 按键向上
+	 */
+	public void keyUp() {
+		// TODO Auto-generated method stub
+		this.gameService.keyUp();
+		this.panelGame.repaint();
+		
+	}
+
+
+ 
+	/**
+	 * 按键向下
+	 */
+	public void keyDown() {
+		// TODO Auto-generated method stub
+		this.gameService.keyDown();
+		this.panelGame.repaint();
+	}
+
+
+	/**
+	 * 按键向左
+	 */
+
+	public void keyLeft() {
+		// TODO Auto-generated method stub
+		this.gameService.keyLeft();
+		this.panelGame.repaint();
+	}
+
+
+	/**
+	 * 按键向右
+	 */
+	public void keyRight() {
+		// TODO Auto-generated method stub
+		this.gameService.keyRight();
 		this.panelGame.repaint();
 	}
 	 

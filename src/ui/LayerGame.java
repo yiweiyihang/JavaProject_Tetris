@@ -1,20 +1,30 @@
 package ui;
-
-import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Point;
+
+import javax.swing.ImageIcon;
 
 public class LayerGame extends Layer {
 	
-	
+	private static Image ACT = new ImageIcon("Graphics/game/rect.png").getImage(); 
+	private static int ACT_SIZE =32;
 	public LayerGame(int x,int y,int w,int h){
 		super(x,y,w,h);
 	}
 	
 	public void paint(Graphics g){
 		this.createWindow(g);
-		g.setFont(new Font("黑体",Font.BOLD,64));
-		String tempStr = Integer.toString(dto.getNowPoint());
-		g.drawString(tempStr, x+PADDING, y+PADDING);
+		Point[] points = this.dto.getGameAct().getActPoint();
+		for(int i = 0;i < points.length;i++){
+			g.drawImage(ACT,
+					this.x + points[i].x * ACT_SIZE + 7,
+					this.y + points[i].y * ACT_SIZE + 7,
+					this.x + points[i].x * ACT_SIZE + ACT_SIZE + 7,
+					this.y+ points[i].y * ACT_SIZE + ACT_SIZE + 7,
+					32, 0, 64, 32,null);
+			
+		}
 	}
 
 }
