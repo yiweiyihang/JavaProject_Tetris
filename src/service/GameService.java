@@ -21,9 +21,7 @@ public class GameService {
 	 */
 	public void keyUp() {
 		// TODO 旋转
-		if(canMove(0, -1)){
-			this.dto.getGameAct().move(0, -1);
-		}
+		this.dto.getGameAct().round();
 	}
 
 	/**
@@ -31,8 +29,16 @@ public class GameService {
 	 */
 	public void keyDown() {
 		// TODO
-		if(canMove(0, 1)){
-			this.dto.getGameAct().move(0, 1);
+
+		// 方块到达底部时 放置方块
+		if(!this.dto.getGameAct().move(0,1)){
+			//获得游戏地图对象
+			boolean[][] map = this.dto.getGameMap();
+			Point[] act = this.dto.getGameAct().getActPoint();
+			for(int i =0; i< act.length; i++){
+				map[act[i].x][act[i].y] = true;
+			}
+			
 		}
 	}
 
@@ -42,9 +48,7 @@ public class GameService {
 
 	public void keyLeft() {
 		// TODO Auto-generated method stub
-		if(canMove(-1, 0)){
-			this.dto.getGameAct().move(-1, 0);
-		}
+		this.dto.getGameAct().move(-1, 0);
 	}
 
 	/**
@@ -52,20 +56,7 @@ public class GameService {
 	 */
 	public void keyRight() {
 		// TODO Auto-generated method stub
-		if(canMove(1, 0)){
-			this.dto.getGameAct().move(1, 0);
-		}
-	}
-
-	private boolean canMove(int moveX, int moveY) {
-		Point[] nowLocation = this.dto.getGameAct().getActPoint();
-		for (Point p : nowLocation) {
-			int newX = p.x + moveX;
-			int newY = p.y + moveY;
-			if (newX < 0 || newX > 9 | newY<0 || newY>17)
-				return false;
-		}
-		return true;
+		this.dto.getGameAct().move(1, 0);
 	}
 
 }

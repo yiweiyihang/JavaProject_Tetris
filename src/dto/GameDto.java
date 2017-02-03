@@ -39,6 +39,23 @@ public class GameDto {
 	private int nowRemoveLine;
 	
 	/**
+	 * 构造函数
+	 */
+	public GameDto(){
+		dtoInit();
+	}
+	
+	/**
+	 * dto初始化
+	 */
+	public void dtoInit(){
+		//TODO 硬编码
+		this.gameMap = new boolean[10][18];
+		// TODO 初始化所有dto 
+	}
+	
+	
+	/**
 	 * get方法和set方法
 	 * @return
 	 */
