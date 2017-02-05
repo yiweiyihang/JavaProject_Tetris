@@ -97,7 +97,7 @@ public class GameService {
 		// TODO Auto-generated method stub
 		this.dto.setnowLevel(this.dto.getnowLevel() + 1);
 		this.dto.setNowPoint(this.dto.getNowPoint() + 10);
-		this.dto.setNowRemoveLine(this.dto.getNowRemoveLine() + 3);
+		this.dto.setNowRemoveLine(this.dto.getNowRemoveLine() + 1);
 		
 		
 		
