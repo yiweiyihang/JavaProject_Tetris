@@ -9,12 +9,12 @@ public class LayerGame extends Layer {
 	/**
 	 * 方块图片源
 	 */
-	private static Image ACT = new ImageIcon("Graphics/game/rect.png").getImage(); 
+	private static final Image ACT = new ImageIcon("Graphics/game/rect.png").getImage(); 
 	// TODO 配置文件
 	/**
 	 * 左位移偏移量
 	 */
-	private static int ACT_SIZE_ROL = 5;
+	private static final int ACT_SIZE_ROL = 5;
 	
 	/**
 	 * 构造函数

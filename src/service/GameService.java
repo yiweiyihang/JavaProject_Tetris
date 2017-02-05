@@ -68,7 +68,10 @@ public class GameService {
 		// >>>>>>判断是否升级
 		// >>>>>>>>升级
 		// TODO 刷新一个新的方块
-		this.dto.getGameAct().init(random.nextInt(TYPE_MAX));
+		this.dto.getGameAct().init(this.dto.getNext());
+		
+		//随机生成下一个方块
+		this.dto.setNext(random.nextInt(TYPE_MAX));
 	}
 
 	/**
@@ -86,6 +89,18 @@ public class GameService {
 	public void keyRight() {
 		// TODO Auto-generated method stub
 		this.dto.getGameAct().move(1, 0,this.dto.getGameMap());
+	}
+
+	
+	// TODO ======================测试专用 ==========================
+	public void testLevelUp() {
+		// TODO Auto-generated method stub
+		this.dto.setnowLevel(this.dto.getnowLevel() + 1);
+		this.dto.setNowPoint(this.dto.getNowPoint() + 10);
+		this.dto.setNowRemoveLine(this.dto.getNowRemoveLine() + 3);
+		
+		
+		
 	}
 
 }

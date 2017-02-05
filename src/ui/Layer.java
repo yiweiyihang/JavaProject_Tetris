@@ -55,6 +55,20 @@ abstract public class Layer {
 		SIZE = cfg.getWindowSize();
 	}
 	
+	/**
+	 * 数字图片  （260 * 36）
+	 */
+	private static final Image IMG_NUMBER = new ImageIcon("Graphics/string/num.png").getImage();
+	/**
+	 * 数字切片高度
+	 */
+	private static final int IMG_NUMBER_H = IMG_NUMBER.getHeight(null);
+	/**
+	 * 数字切片宽度
+	 */
+	protected static final int IMG_NUMBER_W = IMG_NUMBER.getWidth(null)/10;
+	
+	
 	/*
 	 * 构造函数
 	 */
@@ -109,5 +123,38 @@ abstract public class Layer {
 	 * @param g  画笔
 	 */
 	abstract public void paint(Graphics g);
+	
+	/**
+	 * 绘制等级数字
+	 * @param paddingL  左上角x间距
+	 * @param paddingU  左上角y间距
+	 * @param number    要显示的数字
+	 * @param maxBit    最大位数
+	 * @param g         画笔对象
+	 */
+	protected void drawNumberLeftPadding(int paddingL, int paddingU, int number,int maxBit,Graphics g){
+		
+		//把要打印的数字转换为字符串
+		String strNum = Integer.toString(number);
+		// 循环绘制数字右对齐
+		for(int i = 0; i < maxBit; i++){
+			// 判断是否满足绘制条件
+			if(maxBit - i <= strNum.length()){
+				// 计算数字在字符串中的下表
+				int idx = i - maxBit + strNum.length();
+				//把数字number中的每一位取出
+				int singleNum = strNum.charAt(idx) - '0';
+				g.drawImage(IMG_NUMBER, 
+						this.x + paddingL + i * IMG_NUMBER_W, 
+						this.y + paddingU,
+						this.x  + paddingL + i * IMG_NUMBER_W + IMG_NUMBER_W, 
+						this.y + paddingU + IMG_NUMBER_H,
+						singleNum * IMG_NUMBER_W, 0, 
+						(singleNum + 1) * IMG_NUMBER_W, IMG_NUMBER_H,
+						null);
+				
+			}
+		}
+	}
 
 }

@@ -41,6 +41,10 @@ public class PlayerControler extends KeyAdapter {
 			case KeyEvent.VK_RIGHT:
 				gameControler.keyRight();
 				break;
+			case KeyEvent.VK_U:
+				gameControler.testLevelUp();
+				break;
+				
 			default:
 				
 		}

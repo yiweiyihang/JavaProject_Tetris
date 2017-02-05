@@ -80,6 +80,14 @@ public class GameControler {
 		this.gameService.keyRight();
 		this.panelGame.repaint();
 	}
+
+
+    // TODO ======================测试专用 ==========================
+	public void testLevelUp() {
+		// TODO Auto-generated method stub
+		this.gameService.testLevelUp();
+		this.panelGame.repaint();
+	}
 	 
 
 }
