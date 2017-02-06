@@ -9,6 +9,8 @@ public class LayerAbout extends Layer{
 	}
 	
 	public void paint(Graphics g){
-		this.createWindow(g);
-	}
+		g.drawImage(Img.SIGN, this.x, this.y - 32, 
+				this.x + Img.SIGN_W, this.y + Img.SIGN_H - 32 , 
+				0, 0, Img.SIGN_W, Img.SIGN_H, null);
+	} 
 }

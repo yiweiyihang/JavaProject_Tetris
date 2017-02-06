@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -67,6 +68,19 @@ abstract public class Layer {
 	 * 数字切片宽度
 	 */
 	protected static final int IMG_NUMBER_W = IMG_NUMBER.getWidth(null)/10;
+	/**
+	 * 矩形值槽
+	 */
+	private static Image IMG_EXP = new ImageIcon("Graphics/windows/rect.png").getImage();
+	
+	/**
+	 * 矩形值槽（高度）
+	 */
+	private static final int EXP_H = IMG_EXP.getHeight(null);
+	/**
+	 * 矩形值槽（宽度）
+	 */
+	private static final int EXP_W = IMG_EXP.getWidth(null); 
 	
 	
 	/*
@@ -155,6 +169,51 @@ abstract public class Layer {
 				
 			}
 		}
+	}
+	
+	
+
+	/**
+	 * 绘制值槽
+	 * @param g
+	 */
+	
+	protected void drawRect(int x, int y,double value,double maxValue,Graphics g){
+		// 初始化宽度
+		int rect_x =  this.x + PADDING + 2;
+		int rect_y = this.y + y + 2;
+		
+		// 绘制背景
+		g.setColor(Color.BLACK);
+		g.fillRect(rect_x - 2,rect_y - 2, x, EXP_H + 4);
+		g.setColor(Color.WHITE);
+		g.fillRect(rect_x - 1, rect_y - 1 , x - 2, EXP_H + 2);
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillRect(rect_x ,rect_y , x - 4, EXP_H);
+		// 求出比值
+		double percent = value / maxValue;
+		//求出宽度
+		int w = (int)(percent * (x - 4));
+		// 求出颜色
+		int subIdx = (int)(percent * EXP_W);
+		// 绘制值槽
+		g.drawImage(IMG_EXP, 
+				rect_x , rect_y,
+				rect_x + w, rect_y + EXP_H,
+				subIdx, 0,
+				subIdx + 1, EXP_H, null);
+		
+	}
+	
+	/**
+	 * 正中绘图
+	 */
+	protected void drawAtCenter(Image img,Graphics g){
+		int ImgW = img.getWidth(null);
+		int ImgH = img.getHeight(null);
+		int ImgX = this.x + (this.w - ImgW >> 1);
+		int ImgY = this.y + (this.h - ImgH >> 1);
+		g.drawImage(img,ImgX , ImgY , null);
 	}
 
 }
