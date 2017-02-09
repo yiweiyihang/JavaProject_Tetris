@@ -1,6 +1,7 @@
 package ui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -74,23 +75,32 @@ abstract public class Layer {
 	private static Image IMG_EXP = new ImageIcon("Graphics/windows/rect.png").getImage();
 	
 	/**
-	 * 矩形值槽（高度）
+	 * 矩形值槽图片（高度）
 	 */
-	private static final int EXP_H = IMG_EXP.getHeight(null);
+	protected static final int IMG_EXP_H = IMG_EXP.getHeight(null);
 	/**
-	 * 矩形值槽（宽度）
+	 * 矩形值槽图片（宽度）
 	 */
-	private static final int EXP_W = IMG_EXP.getWidth(null); 
+	protected static final int IMG_EXP_W = IMG_EXP.getWidth(null); 
+	
+	/**
+	 * 矩形值槽(宽度)
+	 */
+	private final int expW;
+	/**
+	 * 默认字体
+	 */
+	private static final Font DEF_FONT = new Font("黑体", Font.BOLD, 28);
 	
 	
-	/*
-	 * 构造函数
-	 */
+	
+
 	public Layer(int x,int y,int w,int h){
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
+		this.expW = this.w - (PADDING << 1);
 	}
 	
 	/**
@@ -175,33 +185,45 @@ abstract public class Layer {
 
 	/**
 	 * 绘制值槽
-	 * @param g
+	 *  * @param y
+	 * @param title  标题
+	 * @param number 分值
+	 * @param value  当前得分
+	 * @param maxValue  最大得分
+	 * @param g     画笔
 	 */
 	
-	protected void drawRect(int x, int y,double value,double maxValue,Graphics g){
+	protected void drawRect(int y,String title,int number, double percent,Graphics g){
 		// 初始化宽度
 		int rect_x =  this.x + PADDING + 2;
 		int rect_y = this.y + y + 2;
 		
 		// 绘制背景
 		g.setColor(Color.BLACK);
-		g.fillRect(rect_x - 2,rect_y - 2, x, EXP_H + 4);
+		g.fillRect(rect_x - 2,rect_y - 2, expW, IMG_EXP_H + 4);
 		g.setColor(Color.WHITE);
-		g.fillRect(rect_x - 1, rect_y - 1 , x - 2, EXP_H + 2);
+		g.fillRect(rect_x - 1, rect_y - 1 , expW - 2, IMG_EXP_H + 2);
 		g.setColor(Color.LIGHT_GRAY);
-		g.fillRect(rect_x ,rect_y , x - 4, EXP_H);
-		// 求出比值
-		double percent = value / maxValue;
+		g.fillRect(rect_x ,rect_y , expW - 4, IMG_EXP_H);
 		//求出宽度
-		int w = (int)(percent * (x - 4));
+		int w = (int)(percent * (expW - 4));
 		// 求出颜色
-		int subIdx = (int)(percent * EXP_W);
+		int subIdx = (int)(percent * IMG_EXP_W) - 1;
 		// 绘制值槽
 		g.drawImage(IMG_EXP, 
 				rect_x , rect_y,
-				rect_x + w, rect_y + EXP_H,
+				rect_x + w, rect_y + IMG_EXP_H,
 				subIdx, 0,
-				subIdx + 1, EXP_H, null);
+				subIdx + 1, IMG_EXP_H, null);
+		// 绘制标题
+		g.setColor(Color.WHITE);
+		g.setFont(DEF_FONT);
+		g.drawString(title, rect_x + 4, rect_y + 24);
+		
+		// 显示得分
+		if(number != 0){
+			g.drawString(Integer.toString(number), rect_x + 200, rect_y + 24);
+		}
 		
 	}
 	

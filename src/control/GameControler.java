@@ -1,5 +1,7 @@
 package control;
 
+import dao.Data;
+import dao.DataTest;
 import service.GameService;
 import ui.JPanelGame;
 /**
@@ -10,6 +12,14 @@ import ui.JPanelGame;
  *
  */
 public class GameControler {
+	/**
+	 * 数据访问接口A
+	 */
+	private Data dataA;
+	/**
+	 * 数据访问接口B
+	 */
+	private Data dataB;
 	/**
 	 * 游戏界面层
 	 */
@@ -28,6 +38,14 @@ public class GameControler {
 		// TODO Auto-generated constructor stub
 		this.panelGame = panelGame;
 		this.gameService = gameService;
+		// 从数据接口A获得数据库记录
+		dataA = new DataTest();
+		// 设置数据库记录到游戏
+		this.gameService.setDbRecord(dataA.loadData());
+		// 从数据接口B获得本地磁盘记录
+		dataB = new DataTest();
+		// 设置本地磁盘记录到游戏
+		this.gameService.setDbRecord(dataB.loadData());
 	}
 	
 	

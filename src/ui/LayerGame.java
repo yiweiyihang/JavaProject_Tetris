@@ -37,7 +37,6 @@ public class LayerGame extends Layer {
 			drawActByPoint(points[i].x, points[i].y,typeCode,g);
 			
 		}
-		
 		// 打印地图(已放置的方块)
 		boolean [][] map = this.dto.getGameMap();
 		// TODO 获取当前等级
