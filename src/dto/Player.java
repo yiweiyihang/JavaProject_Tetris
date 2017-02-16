@@ -1,6 +1,8 @@
 package dto;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Comparable<Player>,Serializable{
 	
 	/**
 	 * 用户名称
@@ -33,6 +35,11 @@ public class Player {
 
 	public void setPoint(int point) {
 		this.point = point;
+	}
+
+	@Override
+	public int compareTo(Player pla) {
+		return   pla.point - this.point ;
 	}
 	
 	

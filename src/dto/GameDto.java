@@ -1,6 +1,10 @@
 package dto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+
+import com.sun.jmx.snmp.tasks.ThreadService;
 
 import entity.GameAct;
 
@@ -64,13 +68,30 @@ public class GameDto {
 		return dbRecord;
 	}
 	public void setDbRecord(List<Player> dbRecord) {
-		this.dbRecord = dbRecord;
+		
+		this.dbRecord = this.setFillRecord(dbRecord);
 	}
 	public List<Player> getDiskRecord() {
 		return diskRecord;
 	}
 	public void setDiskRecord(List<Player> diskRecord) {
-		this.diskRecord = diskRecord;
+		this.diskRecord = this.setFillRecord(diskRecord);
+	}
+	
+	private List<Player> setFillRecord(List<Player> players){
+		// 如果数据为空  则创建
+		if(players == null){
+			dbRecord = new ArrayList<Player>();
+		}
+
+		//若数据不满五条　　则填满至五条
+		while (players.size() < 5) {
+			players.add(new Player("No Data",0));
+			
+		}
+		Collections.sort(players);
+		return players;
+		
 	}
 	public boolean[][] getGameMap() {
 		return gameMap;

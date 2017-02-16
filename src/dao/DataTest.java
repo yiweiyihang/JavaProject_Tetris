@@ -11,13 +11,11 @@ public class DataTest implements Data{
 	public List<Player> loadData() {
 		List<Player> players = new ArrayList<>();
 		players.add(new Player("FT", 100));
-		players.add(new Player("FTT", 1000));
-		players.add(new Player("FTTT", 2000));
-		players.add(new Player("FTTTT", 3000));
-		players.add(new Player("FTTTTTAs", 10043));
-		players.add(new Player("FT", 100));
-		players.add(new Player("FT", 100));
-		players.add(new Player("FT", 100));
+		players.add(new Player("FTTTT", 3200));
+		players.add(new Player("FTT", 4000));
+//		players.add(new Player("FTTTTTAs", 10043));
+//		players.add(new Player("FTTT", 2000));
+		
 		return players;
 	}
 
